@@ -5,14 +5,19 @@ import babelParser from '@babel/parser'
 import fs from 'fs'
 import _set from 'lodash.set'
 
-function getComponentDocs({ code, name }) {
+function getComponentDocs({ code, name, filePath }) {
   // TODO: Refactor to not parse a string and use eval
   // Perhaps with babel, acorn, or react-docgen?
   let config = code.split(`${name}.config`)
   config = `{ ${config[1].split('}')[0].split('{')[1]} }`
   let parsedConfig
   eval(`parsedConfig = new Object(${config})`)
-  return { title: name, name, ...parsedConfig }
+  return {
+    filePath: `...src${filePath.split('src')[1]}`,
+    title: name,
+    name,
+    ...parsedConfig,
+  }
 }
 
 function getExportNames({ ast }) {
@@ -38,8 +43,8 @@ function getDocsConfig() {
     dir: srcPath,
   }).filter((file) => file.includes('doc.jsx'))
 
-  const docConfig = docFiles.reduce((acc, value) => {
-    const fileString = fs.readFileSync(value, 'utf8')
+  const docConfig = docFiles.reduce((acc, filePath) => {
+    const fileString = fs.readFileSync(filePath, 'utf8')
     const fileAst = babelParser.parse(fileString, {
       sourceType: 'module',
       plugins: ['jsx'],
@@ -49,10 +54,11 @@ function getDocsConfig() {
       const componentDocs = getComponentDocs({
         code: fileString,
         name: exportName,
+        filePath,
       })
       _set(
         acc,
-        `${componentDocs.category}.${componentDocs.name}`,
+        `${componentDocs.category}.components.${componentDocs.name}`,
         componentDocs
       )
     })
@@ -65,6 +71,6 @@ function getDocsConfig() {
 const docsConfig = getDocsConfig()
 
 fs.writeFileSync(
-  path.join(path.resolve(), 'scripts/docsConfig.mjs'),
+  path.join(path.resolve(), 'snowpack/docs-data.js'),
   `export default ${JSON.stringify(docsConfig, null, 2)}`
 )

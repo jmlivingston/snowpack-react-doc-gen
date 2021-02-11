@@ -3,5 +3,6 @@ module.exports = {
   buildOptions: {
     baseUrl: '/snowpack-react-doc-gen',
   },
+  root: '/src',
   routes: [{ match: 'routes', src: '.*', dest: '/snowpack/root-index.html' }],
 }
