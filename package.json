@@ -5,7 +5,9 @@
     "cra-start": "react-scripts start",
     "snowpack-start": "snowpack dev --config snowpack/root.config.js --open none",
     "snowpack-single": "snowpack dev --config snowpack/single.config.js --open none",
+    "snowpack-docs": "snowpack dev --config snowpack/docs.config.js --open none",
     "build": "react-scripts build",
+    "build-docs": "node scripts/docsBuild.mjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -19,6 +21,8 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "@babel/parser": "^7.12.15",
+    "lodash.set": "^4.3.2",
     "snowpack": "^3.0.11"
   },
   "eslintConfig": {
