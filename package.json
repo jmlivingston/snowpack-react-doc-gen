@@ -1,7 +1,13 @@
 {
   "name": "snowpack-react-doc-gen",
   "version": "0.1.0",
-  "private": true,
+  "scripts": {
+    "cra-start": "react-scripts start",
+    "snowpack-start": "snowpack dev --config snowpack/start.config.js --open none",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -11,11 +17,8 @@
     "react-scripts": "4.0.2",
     "web-vitals": "^1.0.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "snowpack": "^3.0.11"
   },
   "eslintConfig": {
     "extends": [
