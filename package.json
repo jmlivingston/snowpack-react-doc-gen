@@ -4,6 +4,7 @@
   "scripts": {
     "cra-start": "react-scripts start",
     "snowpack-start": "snowpack dev --config snowpack/start.config.js --open none",
+    "snowpack-single": "snowpack dev --config snowpack/single.config.js --open none",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
