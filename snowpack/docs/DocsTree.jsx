@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import DocsTreeItem from './DocsTreeItem'
 import { DocsContext } from './DocsContainer'
+import DocsTreeItem from './DocsTreeItem'
 
 function DocsTree({ data }) {
   const { activeItem, setActiveItem } = useContext(DocsContext)

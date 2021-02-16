@@ -1,5 +1,5 @@
-import Button from './Button'
 import React from 'react'
+import Button from './Button'
 
 function ButtonYellow() {
   return <Button className="yellow">Yellow</Button>

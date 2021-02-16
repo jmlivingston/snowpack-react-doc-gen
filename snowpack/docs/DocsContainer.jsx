@@ -1,15 +1,15 @@
+import _get from 'lodash.get'
 import React, {
   createContext,
   createElement,
+  memo,
   useEffect,
   useState,
-  memo,
 } from 'react'
 import docsData from './docs-data'
 import styles from './DocsContainer.module.css'
-import DocsTreeItemContent from './DocsTreeItemContent'
 import DocsTree from './DocsTree'
-import _get from 'lodash.get'
+import DocsTreeItemContent from './DocsTreeItemContent'
 
 function getActiveItem(data) {
   let activeItem

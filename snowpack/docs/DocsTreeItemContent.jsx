@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createElement } from 'react'
+import React, { createElement, useEffect, useState } from 'react'
 import styles from './DocsTreeItemContent.module.css'
 
 function DocsTreeItemContent({ component, name, path }) {
