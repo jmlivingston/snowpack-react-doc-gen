@@ -40,12 +40,6 @@ function DocsContainer(props) {
           <DocsTree data={docsData} />
         </div>
         <div>{activeItem && <DocsTreeItemContent {...activeItem} />}</div>
-        <button
-          onClick={() => {
-            setActiveItem(docsData.Core.children.Button)
-          }}>
-          Core
-        </button>
       </div>
     </DocsContext.Provider>
   )
