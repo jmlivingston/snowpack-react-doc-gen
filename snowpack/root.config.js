@@ -2,6 +2,7 @@
 module.exports = {
   buildOptions: {
     baseUrl: '/snowpack-react-doc-gen',
+    sourcemap: true,
   },
   exclude: ['**/node_modules/**/*', '**/scripts/**/*'],
   routes: [{ match: 'routes', src: '.*', dest: '/snowpack/root-index.html' }],
