@@ -1,10 +1,10 @@
 // TODO: Add error handling / validation (name parent) / dupes
-import { getFilesFolders } from './util.mjs'
-import path from 'path'
 import babelParser from '@babel/parser'
 import fs from 'fs'
 import _get from 'lodash.get'
 import _set from 'lodash.set'
+import path from 'path'
+import { getFilesFolders } from './util.mjs'
 
 function getComponentDocs({ code, name, filePath }) {
   // TODO: Refactor to not parse a string and use eval
@@ -14,7 +14,7 @@ function getComponentDocs({ code, name, filePath }) {
   let parsedConfig
   eval(`parsedConfig = new Object(${config})`)
   return {
-    component: `||import('../src${filePath.split('src')[1]}')||`,
+    component: `||import('../../src${filePath.split('src')[1]}')||`,
     name: name,
     name,
     ...parsedConfig,
@@ -75,7 +75,7 @@ const docsConfig = getDocsConfig()
 // TODO: Update so filePath turns to component: import('...')
 
 fs.writeFileSync(
-  path.join(path.resolve(), 'snowpack/docs-data.js'),
+  path.join(path.resolve(), 'snowpack/docs/docs-data.js'),
   `export default ${JSON.stringify(docsConfig, null, 2)
     .replace(/\|\|\"/g, '')
     .replace(/\"\|\|/g, '')}`

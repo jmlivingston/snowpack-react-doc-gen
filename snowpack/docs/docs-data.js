@@ -1,4 +1,4 @@
-const data = {
+export default {
   Core: {
     children: {
       Button: {
@@ -7,7 +7,7 @@ const data = {
             component: import('../../src/components/Button/Button.doc.jsx'),
             name: 'ButtonBlue',
             isCombined: true,
-            nameDisplay: 'Blue',
+            nameDisplay: 'Button Blue',
             parent: 'Core|Button',
             path: 'Core.children.Button.children.ButtonBlue',
           },
@@ -15,7 +15,7 @@ const data = {
             component: import('../../src/components/Button/Button.doc.jsx'),
             name: 'ButtonGreen',
             isCombined: true,
-            nameDisplay: 'Green',
+            nameDisplay: 'Button Green',
             parent: 'Core|Button',
             path: 'Core.children.Button.children.ButtonGreen',
           },
@@ -26,7 +26,7 @@ const data = {
             name: 'ButtonYellow',
             parent: 'Core|Button',
             isCombined: true,
-            nameDisplay: 'Yellow',
+            nameDisplay: 'Button Yellow',
             path: 'Core.children.Button.children.ButtonYellow',
           },
         },
@@ -40,5 +40,3 @@ const data = {
     },
   },
 }
-
-export default data
