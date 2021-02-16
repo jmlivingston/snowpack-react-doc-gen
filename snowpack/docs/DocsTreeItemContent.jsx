@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createElement } from 'react'
 import styles from './DocsTreeItemContent.module.css'
 
-function DocsTreeItemContent({ component, name }) {
+function DocsTreeItemContent({ component, name, path }) {
   const [Component, setComponent] = useState(null)
   useEffect(() => {
     ;(async () => {
@@ -12,12 +12,24 @@ function DocsTreeItemContent({ component, name }) {
   return Component ? (
     <div className={styles['docs-content']}>
       <div className={styles['docs-content-header']}>
-        <span>{name}</span>
-        <button>⬈</button>
+        <span>
+          {name} ({path.replace(/children./g, '')})
+        </span>
+        <a
+          href={`?path=${encodeURIComponent(path).replace(/\./g, '%2E')}`}
+          target="_blank"
+          rel="noreferrer">
+          Isolation Mode
+        </a>
         <div style={{ clear: 'both' }}></div>
       </div>
       <hr />
-      <div className={styles['docs-content-body']}>{Component}</div>
+      <div className={styles['docs-content-body']}>
+        {Component}
+        <pre>
+          <code>foo</code>
+        </pre>
+      </div>
     </div>
   ) : null
 }

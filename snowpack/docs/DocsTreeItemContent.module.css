@@ -2,10 +2,17 @@
   padding: 1rem;
 }
 
-.docs-content-header button {
+.docs-content-header a {
+  color: rgba(0, 0, 0, 0.8);
   float: right;
 }
 
 .docs-content-body {
   padding: 1rem;
+}
+
+.docs-content-body pre {
+  padding: 10px;
+  background-color: #ccc;
+  width: auto;
 }

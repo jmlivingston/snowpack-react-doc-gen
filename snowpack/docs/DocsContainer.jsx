@@ -1,8 +1,15 @@
-import React, { createContext, useEffect, useState, memo } from 'react'
+import React, {
+  createContext,
+  createElement,
+  useEffect,
+  useState,
+  memo,
+} from 'react'
 import docsData from './docs-data'
 import styles from './DocsContainer.module.css'
 import DocsTreeItemContent from './DocsTreeItemContent'
 import DocsTree from './DocsTree'
+import _get from 'lodash.get'
 
 function getActiveItem(data) {
   let activeItem
@@ -28,12 +35,30 @@ const DocsContext = createContext({
   setActiveItem: () => {},
 })
 
-function DocsContainer(props) {
+function DocsContainer() {
+  const path = decodeURI(window.location.search).replace('?path=', '')
   const [activeItem, setActiveItem] = useState()
+  const [SingleComponent, setSingleComponent] = useState()
+
   useEffect(() => {
-    setActiveItem(defaultItem)
+    ;(async () => {
+      if (!!path) {
+        const componentInfo = _get(docsData, path)
+        const c = await componentInfo.component
+        setSingleComponent(
+          createElement(c[componentInfo.name] ?? c.default, {})
+        )
+      } else {
+        setActiveItem(defaultItem)
+      }
+    })()
   }, [])
-  return (
+
+  return !!path ? (
+    SingleComponent ? (
+      SingleComponent
+    ) : null
+  ) : (
     <DocsContext.Provider value={{ activeItem, setActiveItem }}>
       <div className={styles['docs-container']}>
         <div className={styles['docs-sidebar']}>
