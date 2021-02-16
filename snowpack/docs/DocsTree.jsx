@@ -13,7 +13,7 @@ function DocsTree({ data }) {
             {Object.keys(properties).length ? (
               <DocsTreeItem {...properties} setActiveItem={setActiveItem} />
             ) : (
-              value.nameDisplay ?? key
+              <span>{value.nameDisplay ?? key}</span>
             )}
             <DocsTree
               activeItem={activeItem}

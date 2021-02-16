@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './Button'
 
 function ButtonBlue() {
-  return <Button>Blue</Button>
+  return <Button className="blue">Blue</Button>
 }
 
 ButtonBlue.config = {
@@ -13,7 +13,7 @@ ButtonBlue.config = {
 }
 
 function ButtonGreen() {
-  return <Button>Green</Button>
+  return <Button className="green">Green</Button>
 }
 
 ButtonGreen.config = {

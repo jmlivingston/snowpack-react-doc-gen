@@ -33,7 +33,7 @@ const data = {
         component: import('../../src/components/Button/ButtonCore.doc.jsx'),
         name: 'Button',
         isCombined: true,
-        nameDisplay: 'Core',
+        nameDisplay: 'Button',
         parent: 'Core',
         path: 'Core.children.Button',
       },

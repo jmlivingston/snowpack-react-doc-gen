@@ -1,0 +1,40 @@
+.button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 0px solid transparent;
+  cursor: pointer;
+  background-color: rgba(33, 37, 41, 1);
+  color: white;
+  font-size: 1rem;
+}
+
+.button:hover {
+  background-color: rgba(33, 37, 41, 0.8);
+}
+
+.button.blue {
+  background-color: rgba(13, 110, 253, 1);
+  color: #fff;
+}
+
+.button.blue:hover {
+  background-color: rgba(13, 110, 253, 0.8);
+}
+
+.button.yellow {
+  background-color: rgba(255, 193, 7, 1);
+  color: #000;
+}
+
+.button.yellow:hover {
+  background-color: rgba(255, 193, 7, 0.8);
+}
+
+.button.green {
+  background-color: rgba(25, 135, 84, 1);
+  color: #fff;
+}
+
+.button.green:hover {
+  background-color: rgba(25, 135, 84, 0.8);
+}

@@ -35,11 +35,12 @@ function DocsContainer(props) {
   }, [])
   return (
     <DocsContext.Provider value={{ activeItem, setActiveItem }}>
-      <div className={styles.wrapper}>
-        <div>
+      <div className={styles['docs-container']}>
+        <div className={styles['docs-sidebar']}>
           <DocsTree data={docsData} />
         </div>
-        <div>{activeItem && <DocsTreeItemContent {...activeItem} />}</div>
+
+        {activeItem && <DocsTreeItemContent {...activeItem} />}
       </div>
     </DocsContext.Provider>
   )
