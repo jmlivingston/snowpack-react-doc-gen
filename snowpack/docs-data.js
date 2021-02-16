@@ -1,28 +1,35 @@
 export default {
   Core: {
-    Button: {
-      components: {
-        ButtonBlue: {
-          filePath: '...src/components/Button/Button.doc.jsx',
-          title: 'Button Blue',
-          name: 'ButtonBlue',
-          category: 'Core.Button',
-          isCombined: true,
+    children: {
+      Button: {
+        children: {
+          ButtonBlue: {
+            component: import('../src/components/Button/Button.doc.jsx'),
+            name: 'ButtonBlue',
+            isCombined: true,
+            nameDisplay: 'Button Blue',
+            parent: 'Core|Button',
+          },
+          ButtonGreen: {
+            component: import('../src/components/Button/Button.doc.jsx'),
+            name: 'ButtonGreen',
+            isCombined: true,
+            nameDisplay: 'Button Green',
+            parent: 'Core|Button',
+          },
+          ButtonYellow: {
+            component: import('../src/components/Button/ButtonYellow.doc.jsx'),
+            name: 'ButtonYellow',
+            parent: 'Core|Button',
+            isCombined: true,
+            nameDisplay: 'Button Yellow',
+          },
         },
-        ButtonGreen: {
-          filePath: '...src/components/Button/Button.doc.jsx',
-          title: 'Button Green',
-          name: 'ButtonGreen',
-          category: 'Core.Button',
-          isCombined: true,
-        },
-        ButtonYellow: {
-          filePath: '...src/components/Button/ButtonYellow.doc.jsx',
-          title: 'Button Yellow',
-          name: 'ButtonYellow',
-          category: 'Core.Button',
-          isCombined: true,
-        },
+        component: import('../src/components/Button/ButtonCore.doc.jsx'),
+        name: 'Button',
+        isCombined: true,
+        nameDisplay: 'Button',
+        parent: 'Core',
       },
     },
   },

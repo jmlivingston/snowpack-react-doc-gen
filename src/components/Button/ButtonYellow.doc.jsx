@@ -5,9 +5,10 @@ function ButtonYellow() {
 }
 
 ButtonYellow.config = {
-  category: 'Core.Button',
+  parent: 'Core|Button',
   isCombined: true,
-  title: 'Button Yellow',
+  name: 'ButtonYellow',
+  nameDisplay: 'Button Yellow',
 }
 
 export default ButtonYellow

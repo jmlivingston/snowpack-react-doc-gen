@@ -5,9 +5,10 @@ function ButtonBlue() {
 }
 
 ButtonBlue.config = {
-  category: 'Core.Button',
   isCombined: true,
-  title: 'Button Blue',
+  name: 'ButtonBlue',
+  nameDisplay: 'Button Blue',
+  parent: 'Core|Button',
 }
 
 function ButtonGreen() {
@@ -15,9 +16,10 @@ function ButtonGreen() {
 }
 
 ButtonGreen.config = {
-  category: 'Core.Button',
   isCombined: true,
-  title: 'Button Green',
+  name: 'ButtonGreen',
+  nameDisplay: 'Button Green',
+  parent: 'Core|Button',
 }
 
 export { ButtonBlue, ButtonGreen }

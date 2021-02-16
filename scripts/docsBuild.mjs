@@ -1,8 +1,9 @@
-// TODO: Add error handling / validation (title category) / dupes
+// TODO: Add error handling / validation (name parent) / dupes
 import { getFilesFolders } from './util.mjs'
 import path from 'path'
 import babelParser from '@babel/parser'
 import fs from 'fs'
+import _get from 'lodash.get'
 import _set from 'lodash.set'
 
 function getComponentDocs({ code, name, filePath }) {
@@ -13,8 +14,8 @@ function getComponentDocs({ code, name, filePath }) {
   let parsedConfig
   eval(`parsedConfig = new Object(${config})`)
   return {
-    filePath: `...src${filePath.split('src')[1]}`,
-    title: name,
+    filePath: `../src${filePath.split('src')[1]}`,
+    name: name,
     name,
     ...parsedConfig,
   }
@@ -37,6 +38,7 @@ function getExportNames({ ast }) {
 }
 
 function getDocsConfig() {
+  // TODO: Alphabetize properties
   const srcPath = path.join(path.resolve(), 'src')
 
   const docFiles = getFilesFolders({
@@ -56,11 +58,11 @@ function getDocsConfig() {
         name: exportName,
         filePath,
       })
-      _set(
-        acc,
-        `${componentDocs.category}.components.${componentDocs.name}`,
-        componentDocs
-      )
+      const path = `${componentDocs.parent
+        .replace(/\|/g, '.')
+        .replace(/\./g, '.children.')}.children.${componentDocs.name}`
+      const existingValues = _get(acc, path, {})
+      _set(acc, path, { ...existingValues, ...componentDocs })
     })
 
     return acc
@@ -69,6 +71,8 @@ function getDocsConfig() {
 }
 
 const docsConfig = getDocsConfig()
+
+// TODO: Update so filePath turns to component: import('...')
 
 fs.writeFileSync(
   path.join(path.resolve(), 'snowpack/docs-data.js'),
