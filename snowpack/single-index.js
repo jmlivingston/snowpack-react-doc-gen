@@ -1,16 +1,12 @@
 import { createElement } from 'react'
 import { render } from 'react-dom'
-import Button from '../src/components/Button/Button.jsx'
 
-const props = {
-  children: 'Test',
-  onClick: () => {
-    console.log('foo')
-  },
-}
+// Note: Switch out Component path and props to test other components
+import Component from '../src/components/Button/Button.jsx'
+const props = { children: 'My Button', onClick: console.log }
 
 function renderComponent(component) {
   render(createElement(component, props), document.getElementById('root'))
 }
 
-renderComponent(Button)
+renderComponent(Component)

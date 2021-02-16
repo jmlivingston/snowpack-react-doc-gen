@@ -14,7 +14,7 @@ function getComponentDocs({ code, name, filePath }) {
   let parsedConfig
   eval(`parsedConfig = new Object(${config})`)
   return {
-    filePath: `../src${filePath.split('src')[1]}`,
+    component: `||import('../src${filePath.split('src')[1]}')||`,
     name: name,
     name,
     ...parsedConfig,
@@ -62,7 +62,7 @@ function getDocsConfig() {
         .replace(/\|/g, '.')
         .replace(/\./g, '.children.')}.children.${componentDocs.name}`
       const existingValues = _get(acc, path, {})
-      _set(acc, path, { ...existingValues, ...componentDocs })
+      _set(acc, path, { ...existingValues, ...componentDocs, path })
     })
 
     return acc
@@ -76,5 +76,7 @@ const docsConfig = getDocsConfig()
 
 fs.writeFileSync(
   path.join(path.resolve(), 'snowpack/docs-data.js'),
-  `export default ${JSON.stringify(docsConfig, null, 2)}`
+  `export default ${JSON.stringify(docsConfig, null, 2)
+    .replace(/\|\|\"/g, '')
+    .replace(/\"\|\|/g, '')}`
 )

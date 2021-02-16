@@ -1,13 +1,9 @@
 import { createElement } from 'react'
 import { render } from 'react-dom'
-import DocsContainer from './DocsContainer.jsx'
-
-const props = {
-  children: 'Docs',
-}
+import DocsContainer from './docs/DocsContainer.jsx'
 
 function renderComponent(component) {
-  render(createElement(component, props), document.getElementById('root'))
+  render(createElement(component), document.getElementById('root'))
 }
 
 renderComponent(DocsContainer)

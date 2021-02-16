@@ -1,4 +1,5 @@
 import Button from './Button'
+import React from 'react'
 
 function ButtonYellow() {
   return <Button>Yellow</Button>

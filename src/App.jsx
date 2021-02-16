@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <h1>App</h1>
-      <Button onClick={console.log}>Foo</Button>
+      <Button onClick={(e) => console.log(e)}>My Button</Button>
     </>
   )
 }
