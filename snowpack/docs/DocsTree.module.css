@@ -1,0 +1,26 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul:first-child {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+li li {
+  margin: 6px 10px 6px 20px;
+}
+
+.docs-tree-expanded-true > ul > li {
+  display: block;
+}
+
+.docs-tree-expanded-false > ul > li {
+  display: none;
+}

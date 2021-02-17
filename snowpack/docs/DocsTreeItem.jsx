@@ -1,13 +1,16 @@
-import React, { useContext } from 'react'
-import { DocsContext } from './DocsContainer'
+import React from 'react'
+import styles from './DocsTreeItem.module.css'
 
-function DocsTreeItem({ component, name, nameDisplay, path }) {
-  const { setActiveItem } = useContext(DocsContext)
-
-  function onClick() {
-    setActiveItem({ component, name, path })
-  }
-  return <button onClick={onClick}>{`${nameDisplay}`}</button>
+function DocsTreeItem({ hasCaret, isExpanded, name, value, onClick }) {
+  return (
+    <span
+      className={`${styles[`docs-tree-caret${hasCaret ? '' : '-false'}`]}  ${
+        isExpanded ? '' : styles['is-expanded-false']
+      }`}
+      onClick={() => onClick({ name, value })}>
+      {name}
+    </span>
+  )
 }
 
 export default DocsTreeItem
