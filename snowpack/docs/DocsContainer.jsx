@@ -7,9 +7,9 @@ import React, {
   useState,
 } from 'react'
 import docsData from './docs-data'
-import styles from './DocsContainer.module.css'
 import DocsTree from './DocsTree'
 import DocsTreeItemContent from './DocsTreeItemContent'
+import Sidebar from './Sidebar'
 
 function getActiveItem(data) {
   let activeItem
@@ -60,13 +60,9 @@ function DocsContainer() {
     ) : null
   ) : (
     <DocsContext.Provider value={{ activeItem, setActiveItem }}>
-      <div className={styles['docs-container']}>
-        <div className={styles['docs-sidebar']}>
-          <DocsTree data={docsData} />
-        </div>
-
+      <Sidebar nav={<DocsTree data={docsData} />}>
         {activeItem && <DocsTreeItemContent {...activeItem} />}
-      </div>
+      </Sidebar>
     </DocsContext.Provider>
   )
 }
