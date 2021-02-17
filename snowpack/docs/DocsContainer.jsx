@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react'
 import docsData from './docs-data'
+import './DocsContainer.css'
 import DocsTree from './DocsTree'
 import DocsTreeItemContent from './DocsTreeItemContent'
 import Sidebar from './Sidebar'
