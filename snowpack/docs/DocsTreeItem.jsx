@@ -8,7 +8,7 @@ function DocsTreeItem({ hasCaret, isExpanded, name, value, onClick }) {
         isExpanded ? '' : styles['is-expanded-false']
       }`}
       onClick={() => onClick({ name, value })}>
-      {name}
+      {name} {value ? <span className={styles['is-component']}>•</span> : ''}
     </span>
   )
 }
