@@ -1,7 +1,7 @@
 import React, { createElement, useEffect, useState } from 'react'
 import styles from './DocsTreeItemContent.module.css'
 
-function DocsTreeItemContent({ component, name, path }) {
+function DocsTreeItemContent({ code, component, name, path }) {
   const [Component, setComponent] = useState(null)
   useEffect(() => {
     ;(async () => {
@@ -24,10 +24,11 @@ function DocsTreeItemContent({ component, name, path }) {
         <div style={{ clear: 'both' }}></div>
       </div>
       <hr />
+      <div className={styles['docs-content-body']}>{Component}</div>
+      <hr />
       <div className={styles['docs-content-body']}>
-        {Component}
         <pre>
-          <code>foo</code>
+          <code>{code}</code>
         </pre>
       </div>
     </div>

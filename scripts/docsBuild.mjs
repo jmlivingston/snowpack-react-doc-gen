@@ -62,7 +62,12 @@ function getDocsConfig() {
         .replace(/\|/g, '.')
         .replace(/\./g, '.children.')}.children.${componentDocs.name}`
       const existingValues = _get(acc, path, {})
-      _set(acc, path, { ...existingValues, ...componentDocs, path })
+      _set(acc, path, {
+        ...existingValues,
+        ...componentDocs,
+        path,
+        code: fileString,
+      })
     })
 
     return acc
