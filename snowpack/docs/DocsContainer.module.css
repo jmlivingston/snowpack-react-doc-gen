@@ -13,10 +13,10 @@ body {
 
 .docs-sidebar {
   min-height: 100vh;
-  background-color: rgba(33, 37, 41, 0.8);
+  background-color: rgba(33, 37, 41, 0.85);
   color: #fff;
   font-size: 1rem;
-  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.6);
 }
 
 .docs-sidebar button {
