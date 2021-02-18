@@ -6,22 +6,24 @@ function Sidebar({ children, nav }) {
 
   return (
     <div className="sidenav-container">
-      <aside id="sidenav-open" className={isOpen ? 'sidenav-open-open' : ''}>
+      <aside className={`sidenav ${isOpen ? 'expanded' : ''}`}>
         <nav onClick={() => setIsOpen(false)}>{nav}</nav>
-        <a
-          href="#"
-          id="sidenav-close"
-          title="Close Menu"
+        <button
           aria-label="Close Menu"
-          onClick={() => setIsOpen(false)}></a>
+          className="sidenav-close"
+          onClick={() => setIsOpen(false)}
+          title="Close Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
+          </svg>
+        </button>
       </aside>
-      <main>
+      <main className={`contents`}>
         <header>
-          <a
-            id="sidenav-button"
-            className="hamburger"
-            title="Open Menu"
+          <button
             aria-label="Open Menu"
+            className="sidenav-open"
+            title="Open Menu"
             onClick={() => {
               setIsOpen(!isOpen)
             }}>
@@ -34,8 +36,7 @@ function Sidebar({ children, nav }) {
               <line x1="0" x2="100%" y1="50%" y2="50%"></line>
               <line x1="0" x2="100%" y1="90%" y2="90%"></line>
             </svg>
-          </a>
-          <h1>Site Title</h1>
+          </button>
         </header>
         <article>{children}</article>
       </main>
