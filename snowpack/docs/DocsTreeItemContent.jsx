@@ -21,7 +21,7 @@ function DocsTreeItemContent({ code, component, name, path }) {
           href={`?path=${encodeURIComponent(path).replace(/\./g, '%2E')}`}
           target="_blank"
           rel="noreferrer">
-          Isolation Mode
+          Isolation Mode &#8599;
         </a>
         <div style={{ clear: 'both' }}></div>
       </div>
