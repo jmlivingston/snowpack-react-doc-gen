@@ -12,10 +12,11 @@ function DocsTreeItemContent({ code, component, name, path }) {
   return Component ? (
     <div className={styles['docs-content']}>
       <div className={styles['docs-content-header']}>
-        <span>
+        <span className={styles['docs-content-header-title']}>
           {name} ({path.replace(/children./g, '')})
         </span>
         <a
+          className={styles['isolation-mode-link']}
           href={`?path=${encodeURIComponent(path).replace(/\./g, '%2E')}`}
           target="_blank"
           rel="noreferrer">

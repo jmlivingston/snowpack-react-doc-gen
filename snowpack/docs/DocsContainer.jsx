@@ -29,6 +29,29 @@ function getActiveItem(data) {
   return activeItem
 }
 
+// TODO: Remove dummyData (used to test scrolling)
+// let dummyData = docsData.Core.children.Button.children
+// for (let i = 0; i < 20; i++) {
+//   dummyData = {
+//     ...dummyData,
+//     ...{
+//       [`ButtonBlue${i}`]: {
+//         ...dummyData.ButtonBlue,
+//         nameDisplay: `ButtonBlue${i}`,
+//       },
+//       [`ButtonGreen${i}`]: {
+//         ...dummyData.ButtonGreen,
+//         nameDisplay: `ButtonGreen${i}`,
+//       },
+//       [`ButtonYellow${i}`]: {
+//         ...dummyData.ButtonYellow,
+//         nameDisplay: `ButtonYellow${i}`,
+//       },
+//     },
+//   }
+// }
+// docsData.Core.children.Button.children = dummyData
+
 const defaultItem = getActiveItem(docsData)
 
 const DocsContext = createContext({

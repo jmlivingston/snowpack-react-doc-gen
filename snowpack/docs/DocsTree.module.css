@@ -5,8 +5,19 @@ ul {
 }
 
 ul:first-child {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-left: 10px;
+  max-height: 100vmax;
+  overflow-y: scroll;
+}
+
+ul:first-child::-webkit-scrollbar {
+  background: hsl(0, 0%, 19%);
+}
+
+ul:first-child::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 39%);
+  border-radius: 10px;
 }
 
 ul li {

@@ -1,14 +1,15 @@
 import React from 'react'
 import styles from './DocsTreeItem.module.css'
 
-function DocsTreeItem({ hasCaret, isExpanded, name, value, onClick }) {
+function DocsTreeItem({ hasExpander, isExpanded, name, value, onClick }) {
   return (
     <span
-      className={`${styles[`docs-tree-caret${hasCaret ? '' : '-false'}`]}  ${
-        isExpanded ? '' : styles['is-expanded-false']
-      }`}
+      className={`${styles['docs-tree-item']} ${
+        styles[`${hasExpander ? '' : 'not-expandable'}`]
+      }  ${isExpanded ? '' : styles['expanded']}`}
       onClick={() => onClick({ name, value })}>
-      {name} {value ? <span className={styles['is-component']}>•</span> : ''}
+      {name}
+      {/* {value ? <span className={styles['is-component']}>•</span> : ''} */}
     </span>
   )
 }

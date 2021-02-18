@@ -27,7 +27,7 @@ function DocsTree({ data }) {
         return children ? (
           <li key={key} className={styles[`docs-tree-expanded-${isExpanded}`]}>
             <DocsTreeItem
-              hasCaret={true}
+              hasExpander={true}
               isExpanded={isExpanded}
               name={name}
               onClick={onClick}
@@ -42,7 +42,7 @@ function DocsTree({ data }) {
         ) : (
           <li key={key}>
             <DocsTreeItem
-              hasCaret={false}
+              hasExpander={false}
               isExpanded={isExpanded}
               name={name}
               value={properties}

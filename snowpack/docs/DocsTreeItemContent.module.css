@@ -1,21 +1,38 @@
 .docs-content-header {
-  padding: 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
 }
 
-.docs-content-header a {
-  color: rgba(0, 0, 0, 0.8);
-  float: right;
+.docs-content-header-title {
+  color: rgba(0, 0, 0, 0.85);
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 2px;
 }
 
 .docs-content-body {
-  padding: 1rem;
+  padding: 1rem 1rem;
 }
 
 .docs-content-body pre {
+  margin-top: 0;
   padding: 10px;
   background-color: #ccc;
   width: auto;
   border-radius: 4px;
+}
+
+.isolation-mode-link {
+  color: #ffffff;
+  float: right;
+  text-decoration: none;
+  background-color: rgba(25, 135, 84, 0.85);
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.isolation-mode-link:hover {
+  background-color: rgba(25, 135, 84, 1);
 }
 
 hr {

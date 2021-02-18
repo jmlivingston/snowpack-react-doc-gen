@@ -1,29 +1,38 @@
-.docs-tree-caret {
+.docs-tree-item {
   cursor: pointer;
   user-select: none;
+  line-height: 1.4rem;
 }
 
-.docs-tree-caret::before {
-  content: '\25B6';
-  font-size: 10px;
+.docs-tree-item:hover {
+  color: rgba(25, 135, 84, 1);
+}
+
+.docs-tree-item:not(.not-expandable)::before {
+  content: '\2039';
+  font-size: 22px;
   color: #fff;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 8px;
+  margin-left: 4px;
+  transform: rotate(-270deg);
 }
 
-.is-expanded-false::before {
-  transform: rotate(90deg);
+.docs-tree-item.expanded::before {
+  transform: rotate(-90deg);
+  margin-left: 0;
+  margin-right: 12px;
 }
 
-.docs-tree-caret-false {
-  margin-left: 14px;
+.not-expandable {
+  margin-left: 16px;
+  cursor: pointer;
 }
 
-.is-component {
+/* .is-component {
   color: rgba(25, 135, 84, 1);
   display: inline-block;
-  position: absolute;
-  margin-left: 6px;
-  margin-top: -8px;
+  margin-left: 0px;
+  margin-top: 0px;
   font-size: 1.85rem;
-}
+} */
