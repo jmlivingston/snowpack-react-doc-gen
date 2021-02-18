@@ -29,10 +29,10 @@
   cursor: pointer;
 }
 
-/* .is-component {
+.active {
   color: rgba(25, 135, 84, 1);
-  display: inline-block;
-  margin-left: 0px;
-  margin-top: 0px;
-  font-size: 1.85rem;
-} */
+}
+
+.active:hover {
+  color: #ffffff;
+}

@@ -15,11 +15,7 @@
 }
 
 .docs-content-body pre {
-  margin-top: 0;
-  padding: 10px;
-  background-color: #ccc;
-  width: auto;
-  border-radius: 4px;
+  background: hsl(0, 0%, 19%);
 }
 
 .isolation-mode-link {

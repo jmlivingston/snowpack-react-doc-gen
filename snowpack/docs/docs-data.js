@@ -1,18 +1,4 @@
 export default {
-  Examples: {
-    children: {
-      App: {
-        component: import('../../src/App.doc.jsx'),
-        name: 'App',
-        isCombined: true,
-        nameDisplay: 'App',
-        parent: 'Examples',
-        path: 'Examples.children.App',
-        code:
-          "import React from 'react'\nimport App from './App'\n\nfunction AppCore() {\n  return <App />\n}\n\nAppCore.config = {\n  isCombined: true,\n  name: 'App',\n  nameDisplay: 'App',\n  parent: 'Examples',\n}\n\nexport default AppCore\n",
-      },
-    },
-  },
   Core: {
     children: {
       Button: {
@@ -58,6 +44,20 @@ export default {
         path: 'Core.children.Button',
         code:
           "import React from 'react'\nimport Button from './Button'\n\nfunction ButtonCore() {\n  return <Button>Core</Button>\n}\n\nButtonCore.config = {\n  isCombined: true,\n  name: 'Button',\n  nameDisplay: 'Button',\n  parent: 'Core',\n}\n\nexport default ButtonCore\n",
+      },
+    },
+  },
+  Examples: {
+    children: {
+      App: {
+        component: import('../../src/App.doc.jsx'),
+        name: 'App',
+        isCombined: true,
+        nameDisplay: 'App',
+        parent: 'Examples',
+        path: 'Examples.children.App',
+        code:
+          "import React from 'react'\nimport App from './App'\n\nfunction AppCore() {\n  return <App />\n}\n\nAppCore.config = {\n  isCombined: true,\n  name: 'App',\n  nameDisplay: 'App',\n  parent: 'Examples',\n}\n\nexport default AppCore\n",
       },
     },
   },

@@ -1,4 +1,5 @@
 import React, { createElement, useEffect, useState } from 'react'
+import Code from './Code'
 import styles from './DocsTreeItemContent.module.css'
 
 function DocsTreeItemContent({ code, component, name, path }) {
@@ -28,9 +29,7 @@ function DocsTreeItemContent({ code, component, name, path }) {
       <div className={styles['docs-content-body']}>{Component}</div>
       <hr />
       <div className={styles['docs-content-body']}>
-        <pre>
-          <code>{code}</code>
-        </pre>
+        <Code code={code} />
       </div>
     </div>
   ) : null

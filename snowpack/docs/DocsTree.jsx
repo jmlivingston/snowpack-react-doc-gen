@@ -24,10 +24,14 @@ function DocsTree({ data }) {
         const name = properties.nameDisplay ?? key
         const isExpanded =
           expanded?.[name] !== undefined ? expanded[name] : true
+
+        let isActive = properties?.path === activeItem?.path
+
         return children ? (
           <li key={key} className={styles[`docs-tree-expanded-${isExpanded}`]}>
             <DocsTreeItem
               hasExpander={true}
+              isActive={isActive}
               isExpanded={isExpanded}
               name={name}
               onClick={onClick}
@@ -43,6 +47,7 @@ function DocsTree({ data }) {
           <li key={key}>
             <DocsTreeItem
               hasExpander={false}
+              isActive={isActive}
               isExpanded={isExpanded}
               name={name}
               value={properties}

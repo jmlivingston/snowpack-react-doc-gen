@@ -23,7 +23,7 @@ function getActiveItem(data) {
       if (children) {
         activeItem = getActiveItem(children)
       }
-      return true
+      return false
     }
   })
   return activeItem
