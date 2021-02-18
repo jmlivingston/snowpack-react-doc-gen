@@ -3,13 +3,13 @@
   border-radius: 6px;
   border: 0px solid transparent;
   cursor: pointer;
-  background-color: rgba(33, 37, 41, 1);
+  background-color: hsl(0, 0%, 19%);
   color: white;
   font-size: 1rem;
 }
 
 .button:hover {
-  background-color: rgba(33, 37, 41, 0.8);
+  background-color: hsl(0, 0%, 29%);
 }
 
 .button.blue {

@@ -30,9 +30,9 @@
 }
 
 .active {
-  color: rgba(25, 135, 84, 1);
+  color: rgba(13, 202, 240, 1);
 }
 
 .active:hover {
-  color: #ffffff;
+  color: rgba(13, 202, 240, 0.8);
 }
