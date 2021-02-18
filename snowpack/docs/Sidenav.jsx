@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import './Sidebar.css'
+import './Sidenav.css'
 
-function Sidebar({ children, nav }) {
+function Sidenav({ children, nav }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -44,4 +44,4 @@ function Sidebar({ children, nav }) {
   )
 }
 
-export default Sidebar
+export default Sidenav

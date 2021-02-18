@@ -10,7 +10,7 @@ import docsData from './docs-data'
 import './DocsContainer.css'
 import DocsTree from './DocsTree'
 import DocsTreeItemContent from './DocsTreeItemContent'
-import Sidebar from './Sidebar'
+import Sidenav from './Sidenav'
 
 function getActiveItem(data) {
   let activeItem
@@ -61,9 +61,9 @@ function DocsContainer() {
     ) : null
   ) : (
     <DocsContext.Provider value={{ activeItem, setActiveItem }}>
-      <Sidebar nav={<DocsTree data={docsData} />}>
+      <Sidenav nav={<DocsTree data={docsData} />}>
         {activeItem && <DocsTreeItemContent {...activeItem} />}
-      </Sidebar>
+      </Sidenav>
     </DocsContext.Provider>
   )
 }
