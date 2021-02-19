@@ -5,5 +5,11 @@ module.exports = {
     sourcemap: true,
   },
   exclude: ['**/node_modules/**/*', '**/scripts/**/*'],
-  routes: [{ match: 'routes', src: '.*', dest: '/snowpack/single-index.html' }],
+  routes: [
+    {
+      match: 'routes',
+      src: '.*',
+      dest: '/scripts/snowpack/docs/docs-index.html',
+    },
+  ],
 }

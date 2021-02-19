@@ -5,7 +5,7 @@ import jscodeshift from 'jscodeshift'
 import _get from 'lodash.get'
 import _set from 'lodash.set'
 import path from 'path'
-import { getFilesFolders } from './util.mjs'
+import { getFilesFolders } from '../../util.mjs'
 
 function removeConfig({ code, name, propertyNames = ['config'] }) {
   const removePath = (path) => jscodeshift(path).remove()
@@ -185,7 +185,7 @@ function getDocsConfig() {
 const docsConfig = getDocsConfig()
 
 fs.writeFileSync(
-  path.join(path.resolve(), 'snowpack/docs/docs-data.js'),
+  path.join(path.resolve(), 'scripts/snowpack/docs/docs-data.js'),
   `export default ${JSON.stringify(docsConfig, null, 2)
     // HACK: see above.
     .replace(/\|\|\"/g, '')
