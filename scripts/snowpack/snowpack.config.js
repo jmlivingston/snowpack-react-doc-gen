@@ -1,4 +1,4 @@
-const defaultHtml = ({ src, title }) => `<!DOCTYPE html>
+const defaultHtml = ({ dest }) => `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -7,17 +7,17 @@ const defaultHtml = ({ src, title }) => `<!DOCTYPE html>
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="./public/logo192.png" />
-    <title>${title}</title>
+    <title>${`React App - ${dest.charAt(0).toUpperCase() + dest.slice(1)}`}</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script type="module" src="${src}"></script>
+    <script type="module" src="${`./scripts/snowpack/snowpack.index.js?dest=${dest}`}"></script>
   </body>
 </html>
 `
 
-function getConfig({ src, title }) {
+function getConfig({ dest }) {
   return {
     buildOptions: {
       baseUrl: '/snowpack-react-doc-gen',
@@ -28,10 +28,10 @@ function getConfig({ src, title }) {
       {
         match: 'routes',
         src: '.*',
-        // Note: dest can be a property that returns a path instead of
+        // Note: dest can be a property that returns a path instead
         dest: (_req, res) => {
           res.writeHead(200, { 'Content-Type': 'text/html' })
-          res.write(defaultHtml({ src, title }))
+          res.write(defaultHtml({ dest }))
           res.end()
         },
       },
@@ -39,12 +39,11 @@ function getConfig({ src, title }) {
   }
 }
 
-// This dest variable comes from args passed through npm scripts. Not used by Snowpack.
+// dest variable comes from args passed through npm scripts. Not used by Snowpack.
 const dest = process.argv.find((arg) => arg.includes('--dest=')).split('=')[1]
 
 module.exports = {
   ...getConfig({
-    src: `./scripts/snowpack/${dest}/${dest}-index.js`,
-    title: `React App - ${dest.charAt(0).toUpperCase() + dest.slice(1)}`,
+    dest,
   }),
 }
