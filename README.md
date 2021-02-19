@@ -24,6 +24,15 @@ This repository demonstrates how to use Snowpack in an existing create-react-app
 
 ---
 
+## Running this project
+
+After git clone, simply install and start.
+
+```bash
+npm i
+npm start
+```
+
 ## Easy Instructions
 
 - Copy and paste the scripts directory into an existing create-react-app project.
