@@ -5,9 +5,10 @@
     "start": "react-scripts start",
     "snowpack-app": "snowpack dev --config scripts/snowpack/snowpack.config.js --open none --dest=app",
     "snowpack-single": "snowpack dev --config scripts/snowpack/snowpack.config.js --open none --dest=single",
-    "snowpack-docs": "snowpack dev --config scripts/snowpack/snowpack.config.js --open none  --dest=docs",
+    "snowpack-docs": "snowpack dev --config scripts/snowpack/snowpack.config.js --open none --dest=docs",
+    "snowpack-docs-build": "snowpack build --config scripts/snowpack/snowpack.config.js --dest=docs",
+    "snowpack-docs-build-config": "node scripts/snowpack/docs/build-config.mjs",
     "build": "react-scripts build",
-    "build-docs": "node scripts/snowpack/docs/docs-build.mjs",
     "test": "react-scripts test"
   },
   "dependencies": {

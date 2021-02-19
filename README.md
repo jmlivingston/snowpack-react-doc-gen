@@ -18,7 +18,7 @@ This repository demonstrates how to use Snowpack in an existing create-react-app
 - Node 12.4+ is required to run any .mjs files which allow ES modules. These can be easily refactored as CommonJS. (Only needed for docs generation.)
 - The instructions assume you have already created an app with create-react-app. You can do this easily, by running `npx create-react-app my-app`.
 - The docs components all use CSS modules to isolate styles from components they are rendering.
-- This project is purposely very simple examples and should only be used as a starting point.
+- This project is purposely simple and doesn't include unit tests or type check. It should only be used as a starting point.
 
 > Troubleshooting: If you have any snowpack cache errors, you may try adding `--reload` to the end of the snowpack script in package.json.
 
@@ -157,20 +157,20 @@ renderComponent(DocsContainer)
 
 - Copy the "scripts/snowpack/docs/components" directory from this repo into yours, ommiting the "docs-data.js" file. This includes a few simple components to provide the "docs" site layout which consists of a side nav with tree components and a main content area.
 
-- Copy util.mjs into scripts and docs-build.mjs into scripts/snowpack/docs. These scripts are used to recursively look for ".doc.jsx" files which we are using to build our documentation.
+- Copy util.mjs into scripts and build-config.mjs into scripts/snowpack/docs. These scripts are used to recursively look for ".doc.jsx" files which we are using to build our documentation.
 
 - Create components using a ".doc.jsx" file extension to render your target component.
 
 - Add the following npm script to package.json:
 
 ```json
-"build-docs": "node scripts/snowpack/docs/docs-build.mjs"
+"snowpack-docs-build-config": "node scripts/snowpack/docs/build-config.mjs"
 ```
 
 - Run the npm script. This will create a "docs-data.js" file in the "scripts/snowpack/docs/components" directory. This will include any meta data (name, parent, path), a dynamic import (which will later be "awaited" on), and the source code, parsed out with jscodeshift.
 
 ```bash
-npm run build-docs
+npm run snowpack-docs-build-config
 ```
 
 - Start the app
@@ -194,7 +194,7 @@ In a nutshell:
   - nameDisplay - Name to display in docs.
   - parent - Pipe delimited namespaced path for component. Also determines how it shows up in the side nav.
 - Export as a single default or export multiple named components.
-- Be sure to run `npm run docs-build` before `npm run snowpack-docs`. This will update the docs-data.js file.
+- Be sure to run `npm run snowpack-docs-build-config` before `npm run snowpack-docs`. This will update the docs-data.js file.
 
 Example
 
