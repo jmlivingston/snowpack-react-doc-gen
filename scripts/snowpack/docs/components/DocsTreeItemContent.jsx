@@ -18,13 +18,22 @@ function DocsTreeItemContent({ code, component, name, path }) {
           {/* TODO: import statement? */}
           {/* ({path.replace(/children./g, '')}) */}
         </span>
-        <a
-          className={styles['isolation-mode-link']}
-          href={`?path=${encodeURIComponent(path).replace(/\./g, '%2E')}`}
-          target="_blank"
-          rel="noreferrer">
-          Isolation Mode &#8599;
-        </a>
+        <div className={styles['docs-link-container']}>
+          <a
+            className={styles['docs-link']}
+            href={`?path=${encodeURIComponent(path).replace(/\./g, '%2E')}`}
+            target="_blank"
+            rel="noreferrer">
+            Isolation Mode &#8599;
+          </a>
+          <a
+            className={styles['docs-link']}
+            href="https://github.com/jmlivingston/snowpack-react-doc-gen"
+            target="_blank"
+            rel="noreferrer">
+            Code &#8599;
+          </a>
+        </div>
         <div style={{ clear: 'both' }}></div>
       </div>
       <hr />

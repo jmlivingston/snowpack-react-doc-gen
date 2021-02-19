@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "scripts": {
     "start": "react-scripts start",
-    "snowpack-app": "snowpack dev --config scripts/snowpack/app/app.config.js --open none",
-    "snowpack-single": "snowpack dev --config scripts/snowpack/single/single.config.js --open none",
-    "snowpack-docs": "snowpack dev --config scripts/snowpack/docs/docs.config.js --open none",
+    "snowpack-app": "snowpack dev --config scripts/snowpack/snowpack.config.js --open none --dest=app",
+    "snowpack-single": "snowpack dev --config scripts/snowpack/snowpack.config.js --open none --dest=single",
+    "snowpack-docs": "snowpack dev --config scripts/snowpack/snowpack.config.js --open none  --dest=docs",
     "build": "react-scripts build",
     "build-docs": "node scripts/snowpack/docs/docs-build.mjs",
     "test": "react-scripts test"

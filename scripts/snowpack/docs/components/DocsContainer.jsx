@@ -1,11 +1,5 @@
 import _get from 'lodash.get'
-import React, {
-  createContext,
-  createElement,
-  memo,
-  useEffect,
-  useState,
-} from 'react'
+import React, { createContext, createElement, memo, useEffect, useState } from 'react'
 import docsData from './docs-data'
 import './DocsContainer.css'
 import DocsTree from './DocsTree'
@@ -46,9 +40,7 @@ function DocsContainer() {
       if (!!path) {
         const componentInfo = _get(docsData, path)
         const c = await componentInfo.component
-        setSingleComponent(
-          createElement(c[componentInfo.name] ?? c.default, {})
-        )
+        setSingleComponent(createElement(c[componentInfo.name] ?? c.default, {}))
       } else {
         setActiveItem(defaultItem)
       }
@@ -61,9 +53,7 @@ function DocsContainer() {
     ) : null
   ) : (
     <DocsContext.Provider value={{ activeItem, setActiveItem }}>
-      <Sidenav nav={<DocsTree data={docsData} />}>
-        {activeItem && <DocsTreeItemContent {...activeItem} />}
-      </Sidenav>
+      <Sidenav nav={<DocsTree data={docsData} />}>{activeItem && <DocsTreeItemContent {...activeItem} />}</Sidenav>
     </DocsContext.Provider>
   )
 }

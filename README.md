@@ -26,6 +26,8 @@ The following instructions assume you have already created an app with create-re
 
 The steps for "app" and "single" are nearly identical except for the initial component they are pointing to. Keeping separate instances can be helpful when debugging. In this case we'll set up "app".
 
+> Note: These are basic instructions, but in this repository most of the logic has been abstracted into a central snowpack.config.js.
+
 - Install snowpack as a dev dependency
 
 ```bash
@@ -65,7 +67,6 @@ import '../../../src/index.jsx'
 3. app.config.js
 
 ```js
-/** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   buildOptions: {
     baseUrl: '/snowpack-react-doc-gen',

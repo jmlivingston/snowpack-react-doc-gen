@@ -1,0 +1,50 @@
+const defaultHtml = ({ src, title }) => `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./public/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="./public/logo192.png" />
+    <title>${title}</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="${src}"></script>
+  </body>
+</html>
+`
+
+function getConfig({ src, title }) {
+  return {
+    buildOptions: {
+      baseUrl: '/snowpack-react-doc-gen',
+      sourcemap: true,
+    },
+    exclude: ['**/node_modules/**/*', '**/scripts/**/*.mjs'],
+    routes: [
+      {
+        match: 'routes',
+        src: '.*',
+        // Note: dest can be a property that returns a path instead of
+        dest: (_req, res) => {
+          res.writeHead(200, { 'Content-Type': 'text/html' })
+          res.write(defaultHtml({ src, title }))
+          res.end()
+        },
+      },
+    ],
+  }
+}
+
+// This dest variable comes from args passed through npm scripts. Not used by Snowpack.
+const dest = process.argv.find((arg) => arg.includes('--dest=')).split('=')[1]
+
+module.exports = {
+  ...getConfig({
+    src: `./scripts/snowpack/${dest}/${dest}-index.js`,
+    title: `React App - ${dest.charAt(0).toUpperCase() + dest.slice(1)}`,
+  }),
+}
