@@ -67,7 +67,9 @@ function removeConfig({ code, name, propertyNames = ['config'] }) {
   const withoutFunctions = jscodeshift(withoutRequire)
     .find(jscodeshift.FunctionDeclaration)
     .filter((e) => {
-      return !unusedExports.includes(e.node.id.name)
+      return exportsNamed.length === 0
+        ? false
+        : !unusedExports.includes(e.node.id.name)
     })
     .forEach(removePath)
     .toSource()
@@ -102,16 +104,19 @@ function removeConfig({ code, name, propertyNames = ['config'] }) {
     .toSource()
 
   return withoutObjectProperty
+    .replace("import React from 'react';", '')
+    .replace("import React from 'react'", '')
+    .trim()
 }
 
 function getComponentDocs({ code, name, filePath }) {
-  // TODO: Refactor to not parse a string and use eval
-  // Perhaps with babel, acorn, or react-docgen?
+  // TODO: Use jscodeshift instead of eval
   let config = code.split(`${name}.config`)
   config = `{ ${config[1].split('}')[0].split('{')[1]} }`
   let parsedConfig
   eval(`parsedConfig = new Object(${config})`)
   return {
+    // HACK: Allows us to strip it out later
     component: `||import('../../src${filePath.split('src')[1]}')||`,
     name: name,
     name,
@@ -136,7 +141,6 @@ function getExportNames({ ast }) {
 }
 
 function getDocsConfig() {
-  // TODO: Alphabetize properties
   const srcPath = path.join(path.resolve(), 'src')
 
   const docFiles = getFilesFolders({
@@ -156,7 +160,7 @@ function getDocsConfig() {
       console.log(exportName, codeConfigSplit)
 
       const componentDocs = getComponentDocs({
-        code: fileString, //`${codeConfigSplit[0]} ${codeConfigEndSplit}`,
+        code: fileString,
         name: exportName,
         filePath,
       })
@@ -183,6 +187,7 @@ const docsConfig = getDocsConfig()
 fs.writeFileSync(
   path.join(path.resolve(), 'snowpack/docs/docs-data.js'),
   `export default ${JSON.stringify(docsConfig, null, 2)
+    // HACK: see above.
     .replace(/\|\|\"/g, '')
     .replace(/\"\|\|/g, '')}`
 )

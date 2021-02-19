@@ -14,7 +14,9 @@ function DocsTreeItemContent({ code, component, name, path }) {
     <div className={styles['docs-content']}>
       <div className={styles['docs-content-header']}>
         <span className={styles['docs-content-header-title']}>
-          {name} ({path.replace(/children./g, '')})
+          {name}
+          {/* TODO: import statement? */}
+          {/* ({path.replace(/children./g, '')}) */}
         </span>
         <a
           className={styles['isolation-mode-link']}

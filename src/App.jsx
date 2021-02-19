@@ -4,7 +4,7 @@ import Button from './components/Button/Button'
 function App() {
   return (
     <>
-      <h1>App</h1>
+      <h1>My Web App</h1>
       <Button onClick={(e) => console.log(e)}>My Button</Button>
     </>
   )
