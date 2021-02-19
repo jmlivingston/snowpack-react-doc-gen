@@ -17,6 +17,7 @@ This repository demonstrates how to use Snowpack in an existing create-react-app
 - JSX - By default, Snowpack expects files with JSX to have a ".jsx" extension. However, apparently you can use the @snowpack/plugin-babel to handle this separately.
 - Node 12.4+ is required to run any .mjs files which allow ES modules. These can be easily refactored as CommonJS. (Only needed for docs generation.)
 - The instructions assume you have already created an app with create-react-app. You can do this easily, by running `npx create-react-app my-app`.
+- The docs components all use CSS modules to isolate styles from components they are rendering.
 - This project is purposely very simple examples and should only be used as a starting point.
 
 > Troubleshooting: If you have any snowpack cache errors, you may try adding `--reload` to the end of the snowpack script in package.json.
@@ -132,6 +133,8 @@ npm run snowpack-app
 ```
 
 ### docs
+
+> Note: Components used by docs use CSS modules in attempt to isolate any styles. The only global ones are in DocsContainer.css and may need to be updated accordingly.
 
 Follow the steps above, but substitute "docs" for "app", then do the following:
 
