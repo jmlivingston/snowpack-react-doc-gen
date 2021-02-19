@@ -5,11 +5,6 @@ function AppCore() {
   return <App />
 }
 
-AppCore.config = {
-  isCombined: true,
-  name: 'App',
-  nameDisplay: 'App',
-  parent: 'Examples',
-}
+AppCore.config = { name: 'App', nameDisplay: 'App', parent: 'Examples' }
 
 export default AppCore

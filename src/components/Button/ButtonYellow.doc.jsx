@@ -5,11 +5,6 @@ function ButtonYellow() {
   return <Button className="yellow">Yellow</Button>
 }
 
-ButtonYellow.config = {
-  parent: 'Core|Button',
-  isCombined: true,
-  name: 'ButtonYellow',
-  nameDisplay: 'Button Yellow',
-}
+ButtonYellow.config = { parent: 'Core|Button', name: 'ButtonYellow', nameDisplay: 'Button Yellow' }
 
 export default ButtonYellow
