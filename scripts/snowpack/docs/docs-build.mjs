@@ -5,7 +5,7 @@ import jscodeshift from 'jscodeshift'
 import _get from 'lodash.get'
 import _set from 'lodash.set'
 import path from 'path'
-import { getFilesFolders } from '../../util.mjs'
+import { getFilesFolders, prettierString } from '../../util.mjs'
 
 function removeConfig({ code, name, propertyNames = ['config'] }) {
   const removePath = (path) => jscodeshift(path).remove()
@@ -117,7 +117,7 @@ function getComponentDocs({ code, name, filePath }) {
   eval(`parsedConfig = new Object(${config})`)
   return {
     // HACK: Allows us to strip it out later
-    component: `||import('../../src${filePath.split('src')[1]}')||`,
+    component: `||import('../../../../src${filePath.split('src')[1]}')||`,
     name: name,
     name,
     ...parsedConfig,
@@ -157,8 +157,6 @@ function getDocsConfig() {
     exportNames.forEach((exportName) => {
       const regex = RegExp(`/${exportName}.config.*?}`, 'g')
       const codeConfigSplit = fileString.replace(regex, '')
-      console.log(exportName, codeConfigSplit)
-
       const componentDocs = getComponentDocs({
         code: fileString,
         name: exportName,
@@ -184,10 +182,14 @@ function getDocsConfig() {
 
 const docsConfig = getDocsConfig()
 
-fs.writeFileSync(
-  path.join(path.resolve(), 'scripts/snowpack/docs/docs-data.js'),
+const code = prettierString(
   `export default ${JSON.stringify(docsConfig, null, 2)
     // HACK: see above.
     .replace(/\|\|\"/g, '')
     .replace(/\"\|\|/g, '')}`
+)
+
+fs.writeFileSync(
+  path.join(path.resolve(), 'scripts/snowpack/docs/components/docs-data.js'),
+  code
 )

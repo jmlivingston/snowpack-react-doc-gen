@@ -7,7 +7,7 @@
     "snowpack-single": "snowpack dev --config scripts/snowpack/single/single.config.js --open none",
     "snowpack-docs": "snowpack dev --config scripts/snowpack/docs/docs.config.js --open none",
     "build": "react-scripts build",
-    "build-docs": "node scripts/snowpack/docsBuild.mjs",
+    "build-docs": "node scripts/snowpack/docs/docs-build.mjs",
     "test": "react-scripts test"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@babel/parser": "^7.12.15",
     "jscodeshift": "^0.11.0",
+    "prettier": "^2.2.1",
     "prismjs": "^1.23.0",
     "snowpack": "^3.0.11"
   },
