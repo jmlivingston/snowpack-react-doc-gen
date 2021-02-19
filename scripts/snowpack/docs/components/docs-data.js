@@ -18,7 +18,7 @@ export default {
           ButtonBlue: {
             component: import('../../../../src/components/Button/Button.doc.jsx'),
             name: 'ButtonBlue',
-            nameDisplay: 'Button Blue',
+            nameDisplay: 'Blue',
             parent: 'Core|Button',
             path: 'Core.children.Button.children.ButtonBlue',
             code:
@@ -27,7 +27,7 @@ export default {
           ButtonGreen: {
             component: import('../../../../src/components/Button/Button.doc.jsx'),
             name: 'ButtonGreen',
-            nameDisplay: 'Button Green',
+            nameDisplay: 'Green',
             parent: 'Core|Button',
             path: 'Core.children.Button.children.ButtonGreen',
             code:
@@ -37,7 +37,7 @@ export default {
             component: import('../../../../src/components/Button/ButtonYellow.doc.jsx'),
             name: 'ButtonYellow',
             parent: 'Core|Button',
-            nameDisplay: 'Button Yellow',
+            nameDisplay: 'Yellow',
             path: 'Core.children.Button.children.ButtonYellow',
             code:
               'import Button from \'./Button\'\n\nfunction ButtonYellow() {\n  return <Button className="yellow">Yellow</Button>\n}',
