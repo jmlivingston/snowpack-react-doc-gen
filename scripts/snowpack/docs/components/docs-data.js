@@ -4,7 +4,6 @@ export default {
       App: {
         component: import('../../../../src/App.doc.jsx'),
         name: 'App',
-
         nameDisplay: 'App',
         parent: 'Examples',
         path: 'Examples.children.App',
@@ -19,7 +18,6 @@ export default {
           ButtonBlue: {
             component: import('../../../../src/components/Button/Button.doc.jsx'),
             name: 'ButtonBlue',
-
             nameDisplay: 'Button Blue',
             parent: 'Core|Button',
             path: 'Core.children.Button.children.ButtonBlue',
@@ -29,7 +27,6 @@ export default {
           ButtonGreen: {
             component: import('../../../../src/components/Button/Button.doc.jsx'),
             name: 'ButtonGreen',
-
             nameDisplay: 'Button Green',
             parent: 'Core|Button',
             path: 'Core.children.Button.children.ButtonGreen',
@@ -40,7 +37,6 @@ export default {
             component: import('../../../../src/components/Button/ButtonYellow.doc.jsx'),
             name: 'ButtonYellow',
             parent: 'Core|Button',
-
             nameDisplay: 'Button Yellow',
             path: 'Core.children.Button.children.ButtonYellow',
             code:
@@ -49,7 +45,6 @@ export default {
         },
         component: import('../../../../src/components/Button/ButtonCore.doc.jsx'),
         name: 'Button',
-
         nameDisplay: 'Button',
         parent: 'Core',
         path: 'Core.children.Button',

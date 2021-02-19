@@ -1,7 +1,8 @@
-/* 
+/*
 TODO: Though this is minimal, it has the potential to break the styles of components showing up in content.
-Please update if necessary.
+Please update if necessary or copy any global styles here.
 */
+
 body {
   margin: 0;
 }
