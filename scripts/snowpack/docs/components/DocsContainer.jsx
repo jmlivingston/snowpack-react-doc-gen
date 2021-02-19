@@ -1,6 +1,8 @@
 import _get from 'lodash.get'
 import React, { createContext, createElement, memo, useEffect, useState } from 'react'
 import docsData from './docs-data'
+// TODO: DocsContainer.css is minimal, but has the potential to break the styles of components showing up in content.
+// Please update if necessary.
 import './DocsContainer.css'
 import DocsTree from './DocsTree'
 import DocsTreeItemContent from './DocsTreeItemContent'

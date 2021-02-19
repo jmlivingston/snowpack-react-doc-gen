@@ -1,3 +1,4 @@
+/* Heavily inspired by Adam Argyle's excellent blogpost: https://web.dev/building-a-sidenav-component */
 /* Branding */
 :root {
   --brand-theme: 0 0% 19%;
@@ -62,13 +63,12 @@
     position: sticky;
     top: 0;
     transform: translateX(-110vw);
-    transition: transform var(--duration) var(--easeOutExpo),
-      visibility 0s linear var(--duration);
+    transition: transform var(--duration) var(--easeOutExpo), visibility 0s linear var(--duration);
     visibility: hidden;
     will-change: transform;
   }
 
-  .sidenav.expanded {
+  .sidenav-expanded {
     transform: translateX(0) !important;
     transition: transform var(--duration) var(--easeOutExpo) !important;
     visibility: visible !important;

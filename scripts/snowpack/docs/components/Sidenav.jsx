@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import './Sidenav.css'
+import styles from './Sidenav.module.css'
 
 function Sidenav({ children, nav }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="sidenav-container">
-      <aside className={`sidenav ${isOpen ? 'expanded' : ''}`}>
+    <div className={styles['sidenav-container']}>
+      <aside className={`${styles['sidenav']} ${isOpen ? styles['sidenav-expanded'] : ''}`}>
         <nav onClick={() => setIsOpen(false)}>{nav}</nav>
         <button
           aria-label="Close Menu"
-          className="sidenav-close"
+          className={styles['sidenav-close']}
           onClick={() => setIsOpen(false)}
           title="Close Menu">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -18,20 +18,16 @@ function Sidenav({ children, nav }) {
           </svg>
         </button>
       </aside>
-      <main className={`contents`}>
+      <main className={styles['contents']}>
         <header>
           <button
             aria-label="Open Menu"
-            className="sidenav-open"
+            className={styles['sidenav-open']}
             title="Open Menu"
             onClick={() => {
               setIsOpen(!isOpen)
             }}>
-            <svg
-              viewBox="0 0 50 40"
-              role="presentation"
-              focusable="false"
-              aria-label="trigram for heaven symbol">
+            <svg viewBox="0 0 50 40" role="presentation" focusable="false" aria-label="trigram for heaven symbol">
               <line x1="0" x2="100%" y1="10%" y2="10%"></line>
               <line x1="0" x2="100%" y1="50%" y2="50%"></line>
               <line x1="0" x2="100%" y1="90%" y2="90%"></line>
