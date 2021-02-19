@@ -1,10 +1,108 @@
 // TODO: Add error handling / validation (name parent) / dupes
 import babelParser from '@babel/parser'
 import fs from 'fs'
+import jscodeshift from 'jscodeshift'
 import _get from 'lodash.get'
 import _set from 'lodash.set'
 import path from 'path'
 import { getFilesFolders } from './util.mjs'
+
+function removeConfig({ code, name, propertyNames = ['config'] }) {
+  const removePath = (path) => jscodeshift(path).remove()
+
+  const withoutExportDefault = jscodeshift(code)
+    .find(jscodeshift.ExportDefaultDeclaration)
+    .filter((e) => {
+      return e
+    })
+    .forEach(removePath)
+    .toSource()
+
+  let unusedExports = []
+  const exportsNamed = jscodeshift(withoutExportDefault)
+    .find(jscodeshift.ExportNamedDeclaration)
+    .forEach((e) => {
+      e.node.specifiers.forEach((specifier) => {
+        if (specifier.exported.name === name) {
+          unusedExports.push(specifier.exported.name)
+        }
+      })
+    })
+
+  const withoutExportNamed = exportsNamed.forEach(removePath).toSource()
+
+  const withoutAssignment = jscodeshift(withoutExportNamed)
+    .find(jscodeshift.AssignmentExpression)
+    .filter((e) => {
+      return (
+        e.node.left &&
+        e.node.left.property &&
+        propertyNames.includes(e.node.left.property.name)
+      )
+    })
+    .forEach(removePath)
+    .toSource()
+
+  const withoutImport = jscodeshift(withoutAssignment)
+    .find(jscodeshift.ImportDeclaration)
+    .filter((e) => {
+      return e.node.source && propertyNames.includes(e.node.source.value)
+    })
+    .forEach(removePath)
+    .toSource()
+
+  const withoutRequire = jscodeshift(withoutImport)
+    .find(jscodeshift.VariableDeclarator)
+    .filter((e) => {
+      return (
+        e.node.init &&
+        e.node.init.callee &&
+        e.node.init.callee.name === 'require' &&
+        propertyNames.includes(e.node.init.arguments[0].value)
+      )
+    })
+    .forEach(removePath)
+    .toSource()
+
+  const withoutFunctions = jscodeshift(withoutRequire)
+    .find(jscodeshift.FunctionDeclaration)
+    .filter((e) => {
+      return !unusedExports.includes(e.node.id.name)
+    })
+    .forEach(removePath)
+    .toSource()
+
+  const withoutDefineProperty = jscodeshift(withoutFunctions)
+    .find(jscodeshift.ExpressionStatement)
+    .filter((e) => {
+      return (
+        e.node.expression &&
+        e.node.expression.callee &&
+        e.node.expression.callee.name === '_defineProperty' &&
+        e.node.expression.arguments &&
+        e.node.expression.arguments[1] &&
+        e.node.expression.arguments[1].original &&
+        propertyNames.includes(e.node.expression.arguments[1].original.value)
+      )
+    })
+    .forEach(removePath)
+    .toSource()
+
+  const withoutObjectProperty = jscodeshift(withoutDefineProperty)
+    .find(jscodeshift.Property)
+    .filter((e) => {
+      return (
+        e.node.key &&
+        propertyNames.includes(e.node.key.name) &&
+        e.node.value &&
+        e.node.value.type === 'ObjectExpression'
+      )
+    })
+    .forEach(removePath)
+    .toSource()
+
+  return withoutObjectProperty
+}
 
 function getComponentDocs({ code, name, filePath }) {
   // TODO: Refactor to not parse a string and use eval
@@ -53,8 +151,12 @@ function getDocsConfig() {
     })
     const exportNames = getExportNames({ ast: fileAst })
     exportNames.forEach((exportName) => {
+      const regex = RegExp(`/${exportName}.config.*?}`, 'g')
+      const codeConfigSplit = fileString.replace(regex, '')
+      console.log(exportName, codeConfigSplit)
+
       const componentDocs = getComponentDocs({
-        code: fileString,
+        code: fileString, //`${codeConfigSplit[0]} ${codeConfigEndSplit}`,
         name: exportName,
         filePath,
       })
@@ -62,11 +164,12 @@ function getDocsConfig() {
         .replace(/\|/g, '.')
         .replace(/\./g, '.children.')}.children.${componentDocs.name}`
       const existingValues = _get(acc, path, {})
+      const code = removeConfig({ code: fileString, name: exportName })
       _set(acc, path, {
         ...existingValues,
         ...componentDocs,
         path,
-        code: fileString,
+        code,
       })
     })
 
@@ -76,8 +179,6 @@ function getDocsConfig() {
 }
 
 const docsConfig = getDocsConfig()
-
-// TODO: Update so filePath turns to component: import('...')
 
 fs.writeFileSync(
   path.join(path.resolve(), 'snowpack/docs/docs-data.js'),
