@@ -19,23 +19,14 @@ function getFilesFolders({ dir, isRecursive = true, type = 'file' }) {
         fileFolder = [name]
         break
     }
-    const fileFolders =
-      isRecursive && isDirectory
-        ? getFilesFolders({ dir: name, isRecursive, type })
-        : []
+    const fileFolders = isRecursive && isDirectory ? getFilesFolders({ dir: name, isRecursive, type }) : []
     return [...files, ...fileFolder, ...fileFolders]
   }, [])
 }
 
 function prettierString(fileString) {
-  const prettierConfig = {
-    jsxBracketSameLine: true,
-    printWidth: 120,
-    semi: false,
-    singleQuote: true,
-    parser: 'babel',
-  }
-  return prettier.format(fileString, prettierConfig)
+  const packageJson = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'package.json')).toString())
+  return prettier.format(fileString, { ...packageJson.prettier, parser: 'babel' })
 }
 
 function prettierFile(file) {
