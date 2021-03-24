@@ -1,7 +1,7 @@
-const path = require('path')
 // dest variable comes from args passed through npm scripts. Not used by Snowpack.
 const dest = process.argv.find((arg) => arg.includes('--dest=')).split('=')[1]
-const isBuild = true //process.argv.includes('build')
+
+const isBuild = process.argv.includes('build')
 
 module.exports = {
   buildOptions: {
