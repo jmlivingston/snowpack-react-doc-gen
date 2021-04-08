@@ -26,13 +26,6 @@ function DocsTreeItemContent({ code, component, name, path }) {
             rel="noreferrer">
             Isolation Mode &#8599;
           </a>
-          <a
-            className={styles['docs-link']}
-            href="https://github.com/jmlivingston/snowpack-react-doc-gen"
-            target="_blank"
-            rel="noreferrer">
-            Code &#8599;
-          </a>
         </div>
         <div style={{ clear: 'both' }}></div>
       </div>
